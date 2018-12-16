@@ -2,7 +2,7 @@
 TSLint rule that bans commented code
 
 ### Usage
-```
+```js
 {
   "extends": [
     "tslint-no-commented-code-rule"
