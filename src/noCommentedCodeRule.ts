@@ -11,7 +11,7 @@ type GroupedComment = {
 
 type PositionedComment = { start: number; end: number; text: string };
 
-interface Options extends Lint.IOptions {
+type Options = {
   ignoredCommentRegex?: string;
   minLineCount?: number;
 }
@@ -34,10 +34,11 @@ const IGNORED_COMMENT_RE = '^(\\w+$|TODO|FIXME)';
 
 export class Rule extends Lint.Rules.AbstractRule {
   public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
+    const args = this.getOptions().ruleArguments;
     const {
       ignoredCommentRegex = IGNORED_COMMENT_RE,
       minLineCount = 2
-    } = this.getOptions() as Options;
+    }: Options = args[0] || {};
     return this.applyWithFunction(sourceFile, walk, {
       ignoredCommentRegex,
       minLineCount

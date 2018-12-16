@@ -28,7 +28,8 @@ var Rule = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Rule.prototype.apply = function (sourceFile) {
-        var _a = this.getOptions(), _b = _a.ignoredCommentRegex, ignoredCommentRegex = _b === void 0 ? IGNORED_COMMENT_RE : _b, _c = _a.minLineCount, minLineCount = _c === void 0 ? 2 : _c;
+        var args = this.getOptions().ruleArguments;
+        var _a = args[0] || {}, _b = _a.ignoredCommentRegex, ignoredCommentRegex = _b === void 0 ? IGNORED_COMMENT_RE : _b, _c = _a.minLineCount, minLineCount = _c === void 0 ? 2 : _c;
         return this.applyWithFunction(sourceFile, walk, {
             ignoredCommentRegex: ignoredCommentRegex,
             minLineCount: minLineCount
